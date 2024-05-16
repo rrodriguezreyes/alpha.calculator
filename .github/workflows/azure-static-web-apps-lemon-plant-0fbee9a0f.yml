@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Update to a compatible Node.js version
+          node-version: '20'  # Set the desired Node.js version
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -29,6 +29,9 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Create oryx-manifest.toml
+        run: |
+          echo 'node_version = "20.0.0"' > oryx-manifest.toml
       - name: Cache Node.js modules
         uses: actions/cache@v2
         with:
@@ -37,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --prefer-offline
       - name: Build
         run: yarn build  # Use yarn for consistency
       - name: Build And Deploy
