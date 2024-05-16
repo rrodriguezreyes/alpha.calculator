@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": ">=18.13.0"
+    },
   "name": "mantis-free-angular-admin-template",
   "version": "4.0.0",
   "author": "CodedThemes",
@@ -58,4 +61,5 @@
     "prettier": "3.2.5",
     "typescript": "5.4"
   }
+  
 }
