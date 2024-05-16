@@ -23,9 +23,9 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x' # Use Node.js version 14.x
+          node-version: '18.x' # Se usa la versión 18.x de Node.js
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile # Installs dependencies using yarn, ensuring deterministic behavior
+        run: yarn install --frozen-lockfile # Instala dependencias usando yarn, asegurando un comportamiento determinista
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
