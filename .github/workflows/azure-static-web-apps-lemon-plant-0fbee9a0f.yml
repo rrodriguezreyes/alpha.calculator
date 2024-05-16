@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Set the desired Node.js version
+          node-version: '20'
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -31,7 +31,8 @@ jobs:
           lfs: false
       - name: Create oryx-manifest.toml
         run: |
-          echo 'node_version = "20.0.0"' > oryx-manifest.toml
+          echo 'runtime = "nodejs"' > oryx-manifest.toml
+          echo 'version = "20.0.0"' >> oryx-manifest.toml
       - name: Cache Node.js modules
         uses: actions/cache@v2
         with:
@@ -42,7 +43,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --prefer-offline
       - name: Build
-        run: yarn build  # Use yarn for consistency
+        run: yarn build
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -52,7 +53,7 @@ jobs:
           action: "upload"
           app_location: "/"
           api_location: ""
-          output_location: "build"  # Adjust according to your project structure
+          output_location: "build"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
