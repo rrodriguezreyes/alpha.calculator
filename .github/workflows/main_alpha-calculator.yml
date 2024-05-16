@@ -20,10 +20,10 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Use Node.js 18.x
+      - name: Use Node.js 16.20.2
         uses: actions/setup-node@v2
         with:
-          node-version: '18.x' # Use Node.js version 18.x
+          node-version: '16.20.2' # Use Node.js version 18.x
       - name: Install Dependencies
         run: yarn install --frozen-lockfile # Installs dependencies using yarn, ensuring deterministic behavior
       - name: Build And Deploy
