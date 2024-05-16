@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.18.0' # Puedes ajustar esto según las necesidades de tu proyecto
+          node-version: '18.13.0' # Puedes ajustar esto según las necesidades de tu proyecto
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
