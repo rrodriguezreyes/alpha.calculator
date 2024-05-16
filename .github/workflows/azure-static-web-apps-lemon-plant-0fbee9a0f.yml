@@ -10,10 +10,20 @@ on:
       - main
 
 jobs:
+  set_node_version:
+    runs-on: ubuntu-latest
+    name: Set Node.js Version
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Puedes ajustar esto según las necesidades de tu proyecto
+
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    needs: set_node_version
     steps:
       - uses: actions/checkout@v3
         with:
@@ -37,6 +47,7 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     name: Close Pull Request Job
+    needs: set_node_version
     steps:
       - name: Close Pull Request
         id: closepullrequest
