@@ -9,13 +9,16 @@
           <div class="d-flex justify-content-between align-items-end mb-4">
             <h3 class="mb-0"><b>Alpha Calculator</b></h3>
           </div>
+          <div *ngIf="loginError" class="alert alert-danger" role="alert">
+            {{ loginError }}
+          </div>
           <div class="form-group mb-3">
             <label class="form-label" for="email">Usuario</label>
-            <input type="email" class="form-control" id="email" placeholder="Nombre de usuario"  />
+            <input type="email" class="form-control" id="email" placeholder="Nombre de usuario" [(ngModel)]="username" />
           </div>
           <div class="form-group mb-3">
             <label class="form-label" for="password">Clave</label>
-            <input type="password" class="form-control" id="password" placeholder="Clave"   />
+            <input type="password" class="form-control" id="password" placeholder="Clave"  [(ngModel)]="password" />
           </div>
           <div class="d-grid mt-4">
             <button type="button" class="btn btn-primary" (click)="login()">Entrar</button>

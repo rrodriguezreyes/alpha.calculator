@@ -7,44 +7,56 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-end mb-4">
               </div>
-              <div class="form-group mb-3">
-                <label class="form-label" for="product_id">Seleccionar Producto*</label>
-                <select class="form-select" id="product_id" [(ngModel)]="selectedProductId">
-                  <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
-                </select>
+              <div *ngIf="loginError" class="alert alert-danger" role="alert">
+                {{ loginError }}
               </div>
-              <div class="form-group mb-3">
-                <label class="form-label" for="en_reinversion">En Reinversión*</label>
-                <select class="form-select" id="en_reinversion" [(ngModel)]="enReinversion">
-                  <option value="true">Si</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-              <div class="form-group mb-3">
-                <label class="form-label" for="plazo">Plazo de días*</label>
-                <input type="number" class="form-control" id="plazo" [(ngModel)]="plazo" placeholder="Plazo" />
-              </div>
-              <div class="form-group mb-3">
-                <label class="form-label" for="fecha_creacion">Fecha de Creación*</label>
-                <input type="datetime-local" class="form-control" id="fecha_creacion" [(ngModel)]="fechaCreacion" placeholder="Fecha de Creación" />
-              </div>
-              <div class="d-grid mt-3">
-                <button type="button" class="btn btn-primary" (click)="calcularInversion()">Calcular Inversión</button>
-              </div>
+              <form #inversionForm="ngForm">
+                <div class="form-group mb-3">
+                  <label class="form-label" for="product_id">Seleccionar Producto*</label>
+                  <select class="form-select" id="product_id" [(ngModel)]="selectedProductId" name="product_id" required>
+                    <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+                  </select>
+                  <div *ngIf="inversionForm.submitted && !selectedProductId" class="text-danger">Este campo es requerido.</div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label" for="en_reinversion">En Reinversión*</label>
+                  <select class="form-select" id="en_reinversion" [(ngModel)]="enReinversion" name="en_reinversion" required>
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                  </select>
+                  <div *ngIf="inversionForm.submitted && enReinversion === null" class="text-danger">Este campo es requerido.</div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label" for="plazo">Plazo de días*</label>
+                  <input type="number" class="form-control" id="plazo" [(ngModel)]="plazo" name="plazo" required placeholder="Plazo" />
+                  <div *ngIf="inversionForm.submitted && !plazo" class="text-danger">Este campo es requerido.</div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label" for="fecha_creacion_date">Fecha de Creación*</label>
+                  <input type="date" class="form-control" id="fecha_creacion_date" [(ngModel)]="fechaCreacionDate" name="fecha_creacion_date" required placeholder="Fecha de Creación" />
+                  <div *ngIf="inversionForm.submitted && !fechaCreacionDate" class="text-danger">Este campo es requerido.</div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="form-label" for="fecha_creacion_time">Hora de Creación*</label>
+                  <input type="time" class="form-control" id="fecha_creacion_time" [(ngModel)]="fechaCreacionTime" name="fecha_creacion_time" required placeholder="Hora de Creación" />
+                  <div *ngIf="inversionForm.submitted && !fechaCreacionTime" class="text-danger">Este campo es requerido.</div>
+                </div>
+                <div class="d-grid mt-3">
+                  <button type="button" class="btn btn-primary" (click)="calcularInversion(inversionForm)">Calcular Inversión</button>
+                </div>
+              </form>
               <!-- Panel para mostrar el resultado -->
-             <!-- Panel para mostrar el resultado -->
-<div *ngIf="resultadoInversion" class="card mt-3">
-  <div class="card-body">
-    <h5 class="card-title">Resultado de la inversión</h5>
-    <p class="card-text">Fecha de inicio: {{ resultadoInversion.fechaInicio }}</p>
-    <p class="card-text">Fecha de fin: {{ resultadoInversion.fechaFin }}</p>
-    <p class="card-text">Plazo: {{ resultadoInversion.plazo }} días</p>
-    <p class="card-text">Plazo real: {{ resultadoInversion.plazoReal }} días</p>
-    <p class="card-text">Producto ID: {{ resultadoInversion.product_id }}</p>
-    <!-- Agrega más detalles según tus necesidades -->
-  </div>
-</div>
-
+              <div *ngIf="resultadoInversion" class="card mt-3">
+                <div class="card-body">
+                  <h5 class="card-title">Resultado de la inversión</h5>
+                  <p class="card-text">Fecha de inicio: {{ resultadoInversion.fechaInicio }}</p>
+                  <p class="card-text">Fecha de fin: {{ resultadoInversion.fechaFin }}</p>
+                  <p class="card-text">Plazo: {{ resultadoInversion.plazo }} días</p>
+                  <p class="card-text">Plazo real: {{ resultadoInversion.plazoReal }} días</p>
+                  <p class="card-text">Producto ID: {{ resultadoInversion.product_id }}</p>
+ 
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -18,27 +18,10 @@ export interface NavigationItem {
   path?: string;
 }
 
-export const NavigationItems: NavigationItem[] = [
-  {
-    id: 'dashboard',
-    title: 'Dashboard',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'default',
-        title: 'Default',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/dashboard/default',
-        icon: 'dashboard',
-        breadcrumbs: false
-      }
-    ]
-  },
+export const NavigationItems: NavigationItem[] = [  
   {
     id: 'authentication',
-    title: 'Authentication',
+    title: 'Ath',
     type: 'group',
     icon: 'icon-navigation',
     children: [
@@ -51,57 +34,14 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'login',
         target: true,
         breadcrumbs: false
-      },
-      {
-        id: 'register',
-        title: 'Register',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/register',
-        icon: 'profile',
-        target: true,
-        breadcrumbs: false
       }
     ]
   },
-  {
-    id: 'utilities',
-    title: 'UI Components',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'typography',
-        title: 'Typography',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/typography',
-        icon: 'font-size'
-      },
-      {
-        id: 'color',
-        title: 'Colors',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/color',
-        icon: 'bg-colors'
-      },
-      {
-        id: 'tabler',
-        title: 'Tabler',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://ant.design/components/icon',
-        icon: 'ant-design',
-        target: true,
-        external: true
-      }
-    ]
-  },
+ 
 
   {
     id: 'other',
-    title: 'Other',
+    title: 'Apps',
     type: 'group',
     icon: 'icon-navigation',
     children: [
@@ -112,16 +52,6 @@ export const NavigationItems: NavigationItem[] = [
         url: '/sample-page',
         classes: 'nav-item',
         icon: 'chrome'
-      },
-      {
-        id: 'document',
-        title: 'Document',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://codedthemes.gitbook.io/mantis-angular/',
-        icon: 'question',
-        target: true,
-        external: true
       }
     ]
   }
