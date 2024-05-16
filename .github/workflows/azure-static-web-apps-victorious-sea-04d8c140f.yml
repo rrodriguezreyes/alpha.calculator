@@ -36,6 +36,9 @@ jobs:
           app_location: "/"
           api_location: ""
           output_location: ""
+          DeploymentId: aa840b60-acb3-4add-9f51-0fbf0dad1872
+          # Add a conditional statement to handle the case where deployment_token is not provided
+          deployment_token: ${{ secrets.AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN }} || ''
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
